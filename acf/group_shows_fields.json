@@ -1,0 +1,120 @@
+{
+    "key": "group_shows_fields",
+    "title": "Show Details",
+    "fields": [
+        {
+            "key": "field_show_date",
+            "label": "Show Date",
+            "name": "show_date",
+            "type": "date_picker",
+            "return_format": "Ymd",
+            "display_format": "d/m/Y",
+            "first_day": 1,
+            "required": 1
+        },
+        {
+            "key": "field_show_venue",
+            "label": "Line 1",
+            "name": "show_venue",
+            "type": "text",
+            "required": 1
+        },
+        {
+            "key": "field_show_city",
+            "label": "Line 2",
+            "name": "show_city",
+            "type": "text",
+            "required": 0
+        },
+        {
+            "key": "field_show_country",
+            "label": "Country",
+            "name": "show_country",
+            "type": "text",
+            "instructions": "3-letter country code (e.g. DEU, USA, GBR)",
+            "required": 0
+        },
+        {
+            "key": "field_show_ticket_url",
+            "label": "Ticket URL",
+            "name": "show_ticket_url",
+            "type": "url",
+            "required": 0
+        },
+        {
+            "key": "field_show_button_label",
+            "label": "Button Label",
+            "name": "show_button_label",
+            "type": "text",
+            "instructions": "Custom button text, e.g. \"Get Tickets\" — leave empty for default (\"Buy Tickets\")",
+            "required": 0
+        },
+        {
+            "key": "field_show_hide_button",
+            "label": "Hide Button",
+            "name": "show_hide_button",
+            "type": "true_false",
+            "ui": 1,
+            "instructions": "Hide the ticket button for this show",
+            "required": 0
+        },
+        {
+            "key": "field_show_status",
+            "label": "Status",
+            "name": "show_status",
+            "type": "select",
+            "choices": {
+                "on_sale": "On Sale",
+                "sold_out": "Sold Out",
+                "cancelled": "Cancelled",
+                "postponed": "Postponed"
+            },
+            "default_value": "on_sale",
+            "return_format": "value",
+            "required": 0
+        },
+        {
+            "key": "field_show_label",
+            "label": "Label / Badge",
+            "name": "show_label",
+            "type": "text",
+            "instructions": "Optional badge text, e.g. \"Special Guest\" or \"Festival\"",
+            "required": 0
+        },
+        {
+            "key": "field_show_presale_date",
+            "label": "Presale Date",
+            "name": "show_presale_date",
+            "type": "date_picker",
+            "return_format": "Ymd",
+            "display_format": "d/m/Y",
+            "first_day": 1,
+            "required": 0
+        },
+        {
+            "key": "field_show_highlight",
+            "label": "Highlight",
+            "name": "show_highlight",
+            "type": "true_false",
+            "ui": 1,
+            "instructions": "Highlight this show in the frontend list",
+            "required": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "shows"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "modified": 1747094400
+}

@@ -1,0 +1,316 @@
+/* ── Showtime – CSS Custom Properties ─────────────────────────────────────
+   Default-Werte = Dark Metal Preset. PHP überschreibt diese via wp_head
+   wenn ein anderes Design gesetzt ist.
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+    --showtime-accent:                  #d4550a;
+    --showtime-accent-hover:            #8a3506;
+    --showtime-accent-subtle:           rgba(212, 85, 10, .08);
+    --showtime-accent-border:           rgba(212, 85, 10, .35);
+    --showtime-accent-glow:             rgba(212, 85, 10, .25);
+    --showtime-row-hover-bg:            rgba(212, 85, 10, .04);
+    --showtime-bg:                      #070605;
+    --showtime-surface:                 #111110;
+    --showtime-border:                  rgba(214, 206, 196, .06);
+    --showtime-text:                    #d6cec4;
+    --showtime-muted:                   rgba(214, 206, 196, .35);
+    --showtime-btn-bg:                  #d4550a;
+    --showtime-btn-color:               #ffffff;
+    --showtime-btn-hover-bg:            #8a3506;
+    --showtime-btn-hover-color:         #ffffff;
+    --showtime-btn-border-width:        1px;
+    --showtime-btn-border-color:        #d4550a;
+    --showtime-btn-padding:             8px 32px;
+    --showtime-btn-ghost-color:         #d4550a;
+    --showtime-btn-ghost-hover-bg:      #d4550a;
+    --showtime-btn-ghost-hover-color:   #ffffff;
+    --showtime-btn-disabled-bg:         transparent;
+    --showtime-btn-disabled-color:      rgba(214, 206, 196, .2);
+    --showtime-btn-disabled-border:     rgba(214, 206, 196, .12);
+    --showtime-font-display:            'Bebas Neue', sans-serif;
+    --showtime-font-ui:                 'Space Mono', monospace;
+    --showtime-day-size:                72px;
+    --showtime-venue-size:              28px;
+    --showtime-price-size:              26px;
+    --showtime-radius:                  0px;
+    --showtime-radius-sm:               0px;
+    --showtime-status-onsale:           #d4550a;
+    --showtime-status-soldout:          rgba(214, 206, 196, .25);
+    --showtime-status-cancelled:        #cc2200;
+    --showtime-status-postponed:        #888888;
+    --showtime-status-past:             rgba(214, 206, 196, .15);
+    --showtime-past-opacity:            0.4;
+    --showtime-transition:              0.2s ease;
+}
+
+/* ── Layout ── */
+
+.showtime-shows {
+    width: 100%;
+    font-family: var(--showtime-font-ui);
+}
+
+.showtime-row {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--showtime-border);
+    transition: background var(--showtime-transition);
+}
+
+.showtime-row:hover {
+    background: var(--showtime-row-hover-bg);
+}
+
+.showtime-row.is-past {
+    opacity: var(--showtime-past-opacity);
+    pointer-events: none;
+}
+
+.showtime-row.is-highlighted .showtime-date {
+    border: 1px dashed var(--showtime-accent-border);
+    padding: 8px 14px;
+}
+
+/* ── Date ── */
+
+.showtime-date {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.showtime-day {
+    font-family: var(--showtime-font-display);
+    font-size: var(--showtime-day-size);
+    letter-spacing: .02em;
+    color: var(--showtime-accent);
+    line-height: .9;
+}
+
+.showtime-month {
+    font-family: var(--showtime-font-ui);
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--showtime-muted);
+    margin-top: 6px;
+}
+
+/* ── Info ── */
+
+.showtime-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.showtime-venue {
+    font-family: var(--showtime-font-display);
+    font-size: var(--showtime-venue-size);
+    letter-spacing: .06em;
+    color: var(--showtime-text);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.showtime-city {
+    font-family: var(--showtime-font-ui);
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--showtime-muted);
+}
+
+.showtime-label {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border: 1px solid var(--showtime-accent-border);
+    background: var(--showtime-accent-subtle);
+    color: var(--showtime-accent);
+    font-family: var(--showtime-font-ui);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    border-radius: var(--showtime-radius-sm);
+}
+
+/* ── Presale countdown ── */
+
+.showtime-presale {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--showtime-accent);
+    margin-top: 4px;
+}
+
+.showtime-countdown {
+    font-weight: 700;
+}
+
+/* ── Action column ── */
+
+.showtime-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+/* ── Ticket Buttons ── */
+
+.showtime-btn-tickets {
+    display: inline-block;
+    font-family: var(--showtime-font-ui);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: var(--showtime-btn-padding);
+    white-space: nowrap;
+    transition: background var(--showtime-transition), color var(--showtime-transition), border-color var(--showtime-transition);
+    cursor: pointer;
+    border-radius: var(--showtime-radius);
+}
+
+.showtime-btn-tickets[data-status="on_sale"] {
+    background-color: var(--showtime-btn-bg);
+    color: var(--showtime-btn-color);
+    border: var(--showtime-btn-border-width) solid var(--showtime-btn-border-color);
+}
+.showtime-btn-tickets[data-status="on_sale"]:hover {
+    background-color: var(--showtime-btn-hover-bg);
+    border-color: var(--showtime-btn-hover-bg);
+    color: var(--showtime-btn-hover-color);
+}
+.showtime-btn-tickets[data-status="sold_out"] {
+    background: var(--showtime-btn-disabled-bg);
+    border: 1px solid var(--showtime-status-soldout);
+    color: var(--showtime-btn-disabled-color);
+    cursor: default;
+}
+.showtime-btn-tickets[data-status="cancelled"] {
+    background: transparent;
+    border: 1px solid var(--showtime-status-cancelled);
+    color: var(--showtime-status-cancelled);
+    cursor: default;
+}
+.showtime-btn-tickets[data-status="postponed"] {
+    background: transparent;
+    border: 1px solid var(--showtime-status-postponed);
+    color: var(--showtime-status-postponed);
+    cursor: default;
+}
+.showtime-btn-tickets[data-status="past"] {
+    background: transparent;
+    border: 1px solid var(--showtime-status-past);
+    color: var(--showtime-status-past);
+    cursor: default;
+}
+
+/* ── iCal link ── */
+
+.showtime-ical {
+    font-family: var(--showtime-font-ui);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--showtime-muted);
+    text-decoration: none;
+    transition: color var(--showtime-transition);
+}
+
+.showtime-ical:hover {
+    color: var(--showtime-accent);
+}
+
+/* ── Footer / Ghost Button ── */
+
+.showtime-footer {
+    margin-top: 32px;
+}
+
+.showtime-btn-all {
+    display: inline-block;
+    background: transparent;
+    border: var(--showtime-btn-border-width) solid var(--showtime-btn-ghost-color);
+    color: var(--showtime-btn-ghost-color);
+    font-family: var(--showtime-font-ui);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: var(--showtime-btn-padding);
+    cursor: pointer;
+    transition: background var(--showtime-transition), color var(--showtime-transition), border-color var(--showtime-transition);
+    border-radius: var(--showtime-radius);
+}
+
+.showtime-btn-all:hover {
+    background: var(--showtime-btn-ghost-hover-bg);
+    color: var(--showtime-btn-ghost-hover-color);
+    border-color: var(--showtime-btn-ghost-hover-bg);
+}
+
+.showtime-btn-no-more {
+    opacity: .3;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Misc ── */
+
+.showtime-no-shows {
+    font-family: var(--showtime-font-ui);
+    font-size: 11px;
+    letter-spacing: .14em;
+    color: var(--showtime-muted);
+    text-transform: uppercase;
+}
+
+.showtime-hidden {
+    overflow: hidden;
+}
+
+/* ── Oxygen-compatible utility classes ── */
+
+.btn {
+    padding: 0.5rem 2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--showtime-radius);
+}
+
+.primary-btn {
+    background-color: var(--showtime-btn-bg);
+    color: var(--showtime-btn-color);
+    border: 1px solid var(--showtime-btn-bg);
+}
+
+.secondary-btn {
+    color: var(--showtime-btn-ghost-color);
+    border: 1px solid var(--showtime-btn-ghost-color);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .showtime-row {
+        grid-template-columns: 90px 1fr;
+        grid-template-rows: auto auto;
+        gap: 16px;
+    }
+
+    .showtime-action {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .showtime-day   { font-size: 48px; }
+    .showtime-venue { font-size: 20px; }
+}
