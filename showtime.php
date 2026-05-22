@@ -14,21 +14,21 @@ define('SHOWTIME_PATH', plugin_dir_path(__FILE__));
 define('SHOWTIME_URL',  plugin_dir_url(__FILE__));
 define('SHOWTIME_VERSION', '1.4.0');
 
-require_once SHOWTIME_PATH . 'includes/cpt.php';
-require_once SHOWTIME_PATH . 'includes/status.php';
-require_once SHOWTIME_PATH . 'includes/shortcode.php';
-require_once SHOWTIME_PATH . 'includes/settings.php';
-require_once SHOWTIME_PATH . 'includes/design-system.php';
-require_once SHOWTIME_PATH . 'includes/design-page.php';
-require_once SHOWTIME_PATH . 'includes/admin.php';
-require_once SHOWTIME_PATH . 'includes/ical.php';
-require_once SHOWTIME_PATH . 'includes/bandsintown.php';
-require_once SHOWTIME_PATH . 'includes/dashboard.php';
+require_once SHOWTIME_PATH . 'includes/core/post-type.php';
+require_once SHOWTIME_PATH . 'includes/core/status.php';
+require_once SHOWTIME_PATH . 'includes/core/ical.php';
+require_once SHOWTIME_PATH . 'includes/frontend/shortcode.php';
+require_once SHOWTIME_PATH . 'includes/admin/settings.php';
+require_once SHOWTIME_PATH . 'includes/admin/columns.php';
+require_once SHOWTIME_PATH . 'includes/admin/dashboard.php';
+require_once SHOWTIME_PATH . 'includes/design/system.php';
+require_once SHOWTIME_PATH . 'includes/design/page.php';
+require_once SHOWTIME_PATH . 'includes/integrations/bandsintown.php';
 
 // Frontend assets
 function showtime_frontend_assets(): void {
-    wp_enqueue_style('showtime', SHOWTIME_URL . 'assets/css/main.css', [], SHOWTIME_VERSION);
-    wp_enqueue_script('showtime', SHOWTIME_URL . 'assets/js/showtime.js', [], SHOWTIME_VERSION, true);
+    wp_enqueue_style('showtime', SHOWTIME_URL . 'assets/frontend/showtime.css', [], SHOWTIME_VERSION);
+    wp_enqueue_script('showtime', SHOWTIME_URL . 'assets/frontend/showtime.js', [], SHOWTIME_VERSION, true);
     wp_localize_script('showtime', 'Showtime', [
         'ajaxUrl' => admin_url('admin-ajax.php'),
         'nonce'   => wp_create_nonce('showtime_nonce'),
@@ -37,13 +37,13 @@ function showtime_frontend_assets(): void {
 
 add_action('wp_enqueue_scripts', 'showtime_frontend_assets');
 
-// Oxygen Builder – Editor-iframe hat eigenen Head-Hook
+// Oxygen Builder – editor iframe has its own head hook
 add_action('ct_builder_head_inside', function (): void {
-    echo '<link rel="stylesheet" href="' . esc_url(SHOWTIME_URL . 'assets/css/main.css?v=' . SHOWTIME_VERSION) . '" type="text/css">' . "\n";
-    echo '<script src="' . esc_url(SHOWTIME_URL . 'assets/js/showtime.js?v=' . SHOWTIME_VERSION) . '" defer></script>' . "\n";
+    echo '<link rel="stylesheet" href="' . esc_url(SHOWTIME_URL . 'assets/frontend/showtime.css?v=' . SHOWTIME_VERSION) . '" type="text/css">' . "\n";
+    echo '<script src="' . esc_url(SHOWTIME_URL . 'assets/frontend/showtime.js?v=' . SHOWTIME_VERSION) . '" defer></script>' . "\n";
 });
 
-// Admin assets – nur auf Showtime-Screens laden
+// Admin assets – only load on Showtime screens
 add_action('admin_enqueue_scripts', function (): void {
     $screen = get_current_screen();
     if (!$screen) return;
@@ -60,7 +60,7 @@ add_action('admin_enqueue_scripts', function (): void {
 
     wp_enqueue_style(
         'showtime-admin',
-        SHOWTIME_URL . 'assets/showtime-admin.css',
+        SHOWTIME_URL . 'assets/admin/admin.css',
         [],
         SHOWTIME_VERSION
     );
@@ -73,7 +73,7 @@ add_action('admin_enqueue_scripts', function (): void {
 
     wp_enqueue_script(
         'showtime-admin',
-        SHOWTIME_URL . 'assets/showtime-admin.js',
+        SHOWTIME_URL . 'assets/admin/admin.js',
         $deps,
         SHOWTIME_VERSION,
         true
